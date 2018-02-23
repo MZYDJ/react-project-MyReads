@@ -4,5 +4,5 @@ yarn.lock
 .htmlhintrc
 .stylelintrc
 .eslintrc.json
-.sublime-project
-.sublime-workspace
+*.sublime-project
+*.sublime-workspace
