@@ -17,7 +17,12 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
-    BooksAPI.getAll().then((books) => (this.setState({ books })))
+    BooksAPI.getAll().then(books => {
+      this.setState({ books });
+    }).catch(e => {
+      console.win(e);
+      alert('BooksAPI错误，请稍后再试。错误信息：' + e);
+    });
   }
 
   render() {
