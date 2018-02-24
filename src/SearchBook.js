@@ -2,6 +2,16 @@ import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
 
 class SearchBook extends Component {
+	// 用来存储输入框中输入的搜索关键词
+	state = {
+		query: ''
+	}
+
+	// 根据输入的query更新状态中的query
+	updateQuery = (query) => {
+		this.setState({ query: query.trim() })
+	}
+
 	render() {
 		return (
 			<div className="search-books">
@@ -16,7 +26,12 @@ class SearchBook extends Component {
 			        However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
 			        you don't find a specific author or title. Every search is limited by search terms.
 			      */}
-			      <input type="text" placeholder="按标题或作者搜索"/>
+			      <input 
+			      	type="text" 
+			      	placeholder="按标题或作者搜索"
+			      	value={this.state.query}
+			      	onChange={(event) => this.updateQuery(event.target.value)}
+			      />
 
 			    </div>
 			  </div>
