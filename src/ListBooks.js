@@ -15,6 +15,7 @@ class ListBooks extends Component {
 			        <h2 className="bookshelf-title">正在阅读</h2>
 			        <div className="bookshelf-books">
 			          <ol className="books-grid">
+			          	{/* 在书架中所有书籍中筛选出本暑假图书进行渲染*/}
 			            {this.props.books.filter(book => (book.shelf === 'currentlyReading')).map(book => (
 							<Book book={book} key={book.id} onUpdateBook={this.props.onUpdateBook} />
 			            ))}
@@ -25,6 +26,7 @@ class ListBooks extends Component {
 			        <h2 className="bookshelf-title">想读</h2>
 			        <div className="bookshelf-books">
 			          <ol className="books-grid">
+			          	{/* 在书架中所有书籍中筛选出本暑假图书进行渲染*/}
 			            {this.props.books.filter(book => (book.shelf === 'wantToRead')).map(book => (
 							<Book book={book} key={book.id} onUpdateBook={this.props.onUpdateBook} />
 			            ))}
@@ -35,6 +37,7 @@ class ListBooks extends Component {
 			        <h2 className="bookshelf-title">读完</h2>
 			        <div className="bookshelf-books">
 			          <ol className="books-grid">
+			          	{/* 在书架中所有书籍中筛选出本暑假图书进行渲染*/}
 			          	{this.props.books.filter(book => (book.shelf === 'read')).map(book => (
 							<Book book={book} key={book.id} onUpdateBook={this.props.onUpdateBook} />
 			            ))}

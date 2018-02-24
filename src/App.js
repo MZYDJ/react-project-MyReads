@@ -7,8 +7,11 @@ import './App.css';
 
 class BooksApp extends React.Component {
   state = {
+    // 存储书架中的书
     books: [],
+    // 存储搜索结果的书
     searchBooks: [],
+    // 是否显示无搜索结果标志
     noSearched: true
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -19,6 +22,7 @@ class BooksApp extends React.Component {
   }
 
   componentDidMount() {
+    // 初始化通过API获取所有暑假中的书
     BooksAPI.getAll().then(books => {
       this.setState({ books });
     }).catch(e => {
@@ -27,17 +31,22 @@ class BooksApp extends React.Component {
     });
   }
 
+  // 在搜索界面添加新的图书到暑假中
   addBook = (chooseBook, shelf) => {
     this.setState((state) => {
+      // 新图书没有shelf属性，需要添加
       chooseBook.shelf = shelf;
       return { books: state.books.concat(chooseBook) };
     });
 
+    // 使用API更新服务端书架
     BooksAPI.update(chooseBook, shelf);
   }
 
+  // 在书架或者搜索界面改变图书所在书架位置
   updateBook = (chooseBook, shelf) => {
     this.setState((state) => ({
+      // 在书架中所有书籍匹配更改的图书，找到之后修改shelf为新shelf
       books: state.books.map(book => {
         if (book.id === chooseBook.id) {
           book.shelf=shelf;
@@ -46,11 +55,14 @@ class BooksApp extends React.Component {
       })
     }));
 
+    // 使用API更新服务端书架
     BooksAPI.update(chooseBook, shelf);
   }
 
+  // 在服务器搜索关键字，并根据结果修改状态
   searchBook = (query) => {
     BooksAPI.search(query).then(books => {
+      // 如果返回的结果是数组，修改searchBooks
       Array.isArray(books) && this.setState({ searchBooks: books.map(book => {
         this.state.books.forEach(b => {
           if (b.id === book.id) {
@@ -61,6 +73,7 @@ class BooksApp extends React.Component {
         return book;
       })});
       Array.isArray(books) && this.setState({ noSearched: false });
+      // 如果返回的结果不是数组，清空searchBooks并且显示无搜索结果提示
       Array.isArray(books) || this.setState({ searchBooks: [] });
       Array.isArray(books) || this.setState({ noSearched: true });
     }).catch(e => {
