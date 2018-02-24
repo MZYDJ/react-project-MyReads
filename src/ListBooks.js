@@ -16,7 +16,7 @@ class ListBooks extends Component {
 			        <div className="bookshelf-books">
 			          <ol className="books-grid">
 			            {this.props.books.filter(book => (book.shelf === 'currentlyReading')).map(book => (
-							<Book book={book} key={book.id} />
+							<Book book={book} key={book.id} onUpdateBook={this.props.onUpdateBook} />
 			            ))}
 			          </ol>
 			        </div>
@@ -26,7 +26,7 @@ class ListBooks extends Component {
 			        <div className="bookshelf-books">
 			          <ol className="books-grid">
 			            {this.props.books.filter(book => (book.shelf === 'wantToRead')).map(book => (
-							<Book book={book} key={book.id} />
+							<Book book={book} key={book.id} onUpdateBook={this.props.onUpdateBook} />
 			            ))}
 			          </ol>
 			        </div>
@@ -36,7 +36,7 @@ class ListBooks extends Component {
 			        <div className="bookshelf-books">
 			          <ol className="books-grid">
 			          	{this.props.books.filter(book => (book.shelf === 'read')).map(book => (
-							<Book book={book} key={book.id} />
+							<Book book={book} key={book.id} onUpdateBook={this.props.onUpdateBook} />
 			            ))}
 			          </ol>
 			        </div>

@@ -1,6 +1,10 @@
 import React, { Component }  from 'react';
 
 class Book extends Component {
+	componentDidMount() {
+		document.getElementById(this.props.book.id).selectedIndex=['none', 'currentlyReading', 'wantToRead', 'read'].indexOf(this.props.book.shelf);
+	}
+
 	render() {
 		return (
 			<li>
@@ -8,7 +12,10 @@ class Book extends Component {
 			    <div className="book-top">
 			      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${this.props.book.imageLinks.thumbnail})` }}></div>
 			      <div className="book-shelf-changer">
-			        <select>
+			        <select 
+			        	id={this.props.book.id}
+			        	onChange={(event) => this.props.onUpdateBook(this.props.book, event.target.value)}
+			        >
 			          <option value="none" disabled>移动到</option>
 			          <option value="currentlyReading">正在阅读</option>
 			          <option value="wantToRead">想读</option>

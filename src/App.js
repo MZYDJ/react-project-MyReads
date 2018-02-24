@@ -20,7 +20,7 @@ class BooksApp extends React.Component {
     BooksAPI.getAll().then(books => {
       this.setState({ books });
     }).catch(e => {
-      console.win(e);
+      console.warn(e);
       alert('BooksAPI错误，请稍后再试。错误信息：' + e);
     });
   }
