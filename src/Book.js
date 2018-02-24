@@ -14,7 +14,9 @@ class Book extends Component {
 			      <div className="book-shelf-changer">
 			        <select 
 			        	id={this.props.book.id}
-			        	onChange={(event) => this.props.onUpdateBook(this.props.book, event.target.value)}
+			        	onChange={(event) => {
+			        		this.props.book.shelf?this.props.onUpdateBook(this.props.book, event.target.value):this.props.onAddBook(this.props.book, event.target.value);
+			        	}}
 			        >
 			          <option value="none" disabled>移动到</option>
 			          <option value="currentlyReading">正在阅读</option>
