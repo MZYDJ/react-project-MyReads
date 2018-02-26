@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { Link } from 'react-router-dom';
 import Book from './Book';
+import Loading from './Loading';
 
 class SearchBook extends Component {
 	// 用来存储输入框中输入的搜索关键词
@@ -38,6 +39,8 @@ class SearchBook extends Component {
 			    </div>
 			  </div>
 			  <div className="search-books-results">
+			  	{/* 判断加载结束标志，显示提示*/}
+		        {this.props.loaded || <Loading />}
 			  	{/* 判断搜索结果标志，无搜索结果显示提示*/}
 			  	{this.props.noSearched && <div>没有找到相关书籍</div>}
 			    <ol className="books-grid">

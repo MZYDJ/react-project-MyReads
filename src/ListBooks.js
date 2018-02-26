@@ -1,5 +1,6 @@
 import React, { Component }  from 'react';
 import Book from './Book';
+import Loading from './Loading';
 import { Link } from 'react-router-dom';
 
 class ListBooks extends Component {
@@ -14,6 +15,7 @@ class ListBooks extends Component {
 			      <div className="bookshelf">
 			        <h2 className="bookshelf-title">正在阅读</h2>
 			        <div className="bookshelf-books">
+			          {this.props.loaded || <Loading />}
 			          <ol className="books-grid">
 			          	{/* 在书架中所有书籍中筛选出本暑假图书进行渲染*/}
 			            {this.props.books.filter(book => (book.shelf === 'currentlyReading')).map(book => (
@@ -25,6 +27,7 @@ class ListBooks extends Component {
 			      <div className="bookshelf">
 			        <h2 className="bookshelf-title">想读</h2>
 			        <div className="bookshelf-books">
+			          {this.props.loaded || <Loading />}
 			          <ol className="books-grid">
 			          	{/* 在书架中所有书籍中筛选出本暑假图书进行渲染*/}
 			            {this.props.books.filter(book => (book.shelf === 'wantToRead')).map(book => (
@@ -36,6 +39,7 @@ class ListBooks extends Component {
 			      <div className="bookshelf">
 			        <h2 className="bookshelf-title">读完</h2>
 			        <div className="bookshelf-books">
+			          {this.props.loaded || <Loading />}
 			          <ol className="books-grid">
 			          	{/* 在书架中所有书籍中筛选出本暑假图书进行渲染*/}
 			          	{this.props.books.filter(book => (book.shelf === 'read')).map(book => (
