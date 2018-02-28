@@ -27,8 +27,7 @@ class BooksApp extends React.Component {
     this.setState({ loaded: false });
     // 初始化通过API获取所有暑假中的书
     BooksAPI.getAll().then(books => {
-      this.setState({ books });
-      this.setState({ loaded: true });
+      this.setState({ books, loaded: true });
     }).catch(e => {
       console.warn(e);
       alert('BooksAPI错误，请稍后再试。错误信息：' + e);

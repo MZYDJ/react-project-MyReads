@@ -42,7 +42,7 @@ class SearchBook extends Component {
 			  	{/* 判断加载结束标志，显示提示*/}
 		        {this.props.loaded || <Loading />}
 			  	{/* 判断搜索结果标志，无搜索结果显示提示*/}
-			  	{this.props.noSearched && <div>没有找到相关书籍</div>}
+			  	{this.props.loaded && this.props.noSearched && <div>没有找到相关书籍</div>}
 			    <ol className="books-grid">
                 	{this.props.books.map(book => (
 	    				<Book 
