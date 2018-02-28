@@ -1,11 +1,6 @@
 import React, { Component }  from 'react';
 
 class Book extends Component {
-	componentDidMount() {
-		// 在生命周期组件加载之后判断图书所在书架，匹配下拉菜单默认选项
-		document.getElementById(this.props.book.id).selectedIndex=['none', 'currentlyReading', 'wantToRead', 'read'].indexOf(this.props.book.shelf);
-	}
-
 	render() {
 		return (
 			<li>
@@ -15,6 +10,7 @@ class Book extends Component {
 			      <div className="book-shelf-changer">
 			        <select 
 			        	id={this.props.book.id}
+			        	value={this.props.book.shelf || 'none'/* 匹配下拉菜单默认选项 */}
 			        	onChange={(event) => {
 			        		// 判断本书是否在书架之上，如果在进行修改操作，不在进行添加操作
 			        		this.props.book.shelf?this.props.onUpdateBook(this.props.book, event.target.value):this.props.onAddBook(this.props.book, event.target.value);
