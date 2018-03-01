@@ -14,17 +14,10 @@ class BooksApp extends React.Component {
     // 是否显示无搜索结果标志
     noSearched: false,
     // 是否加载完毕标识
-    loaded: true
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
+    loaded: false
   }
 
   componentDidMount() {
-    this.setState({ loaded: false });
     // 初始化通过API获取所有暑假中的书
     BooksAPI.getAll().then(books => {
       this.setState({ books, loaded: true });
